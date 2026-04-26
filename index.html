@@ -3,105 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treino App - MP025</title>
+    <title>Treino Pro - MP025</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             background: linear-gradient(135deg, #114C5A 0%, #172B36 100%);
             color: #F1F6F4;
             font-family: 'Inter', sans-serif;
-            min-height: 100-vh;
+            min-height: 100vh;
         }
         .glass-card {
             background: rgba(23, 43, 54, 0.6);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(241, 246, 244, 0.1);
-            border-radius: 16px; /* Regra dos 8px */
+            border-radius: 16px;
         }
         .accent-saffron { color: #FF9932; }
         .bg-saffron { background-color: #FF9932; }
-        .tab-active { border-bottom: 3px solid #FFC801; color: #FFC801; }
+        .tab-active { border-bottom: 3px solid #FFC801; color: #FFC801; opacity: 1 !important; }
     </style>
 </head>
-<body class="p-4 pb-24">
+<body class="p-4 pb-32">
 
-    <header class="mb-8 mt-4 flex justify-between items-center px-2">
-        <div>
-            <h1 class="text-2xl font-bold tracking-tight">Olá, Aluno</h1>
-            <p class="text-sm opacity-70">Sexta, 24 de Abril</p>
-        </div>
-        <div class="w-12 h-12 rounded-full border-2 border-[#FFC801] flex items-center justify-center font-bold">
-            MP
-        </div>
+    <header class="mb-6 mt-4 px-2">
+        <h1 id="saudacao" class="text-2xl font-bold tracking-tight">Bem-vindo!</h1>
+        <p class="text-sm opacity-70 italic mt-1">"A disciplina é a ponte entre metas e realizações."</p>
     </header>
 
-    <nav class="flex justify-around mb-8 border-b border-white/10 text-sm font-medium">
-        <button onclick="switchTab('treinoA')" id="btn-treinoA" class="pb-3 px-4 tab-active">Treino A</button>
-        <button onclick="switchTab('treinoB')" id="btn-treinoB" class="pb-3 px-4 opacity-50">Treino B</button>
-        <button onclick="switchTab('treinoC')" id="btn-treinoC" class="pb-3 px-4 opacity-50">Treino C</button>
-    </nav>
-
-    <main id="treino-container">
-        <div class="glass-card p-6 mb-4 shadow-xl">
-            <div class="flex justify-between items-start mb-4">
-                <div>
-                    <h2 class="text-lg font-semibold accent-saffron">Supino Reto</h2>
-                    <p class="text-xs opacity-60">4 Séries x 10-12 Reps</p>
-                </div>
-                <input type="checkbox" class="w-6 h-6 rounded accent-saffron bg-transparent border-white/20">
-            </div>
-
-            <details class="group">
-                <summary class="list-none cursor-pointer flex items-center text-sm opacity-80 group-open:mb-4">
-                    <span class="mr-2">▼</span> Ver detalhes e carga
-                </summary>
-                <div class="space-y-4 mt-2 border-t border-white/10 pt-4">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-[10px] uppercase mb-1 opacity-50">Carga (kg)</label>
-                            <input type="number" placeholder="00" class="w-full bg-white/5 border border-white/10 rounded-lg p-2 focus:outline-none focus:border-[#FF9932]">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] uppercase mb-1 opacity-50">Descanso</label>
-                            <p class="p-2 text-sm">60 seg</p>
-                        </div>
-                    </div>
-                    <p class="text-xs italic opacity-70">Nota: Manter escápulas retraídas e barra descendo até o esterno.</p>
-                </div>
-            </details>
-        </div>
-
-        </main>
-
-    <div class="fixed bottom-0 left-0 right-0 h-20 glass-card mx-4 mb-4 flex justify-around items-center px-4">
-        <button class="flex flex-col items-center gap-1">
-            <span class="text-xl">🏠</span>
-            <span class="text-[10px]">Início</span>
-        </button>
-        <button class="flex flex-col items-center gap-1 accent-saffron font-bold">
-            <span class="text-xl">💪</span>
-            <span class="text-[10px]">Treino</span>
-        </button>
-        <button class="flex flex-col items-center gap-1">
-            <span class="text-xl">📊</span>
-            <span class="text-[10px]">Evolução</span>
-        </button>
+    <div class="mb-6 flex gap-2 text-xs">
+        <button onclick="setGenero('M')" class="px-3 py-1 rounded-full border border-white/20">Sou Homem</button>
+        <button onclick="setGenero('F')" class="px-3 py-1 rounded-full border border-white/20">Sou Mulher</button>
     </div>
 
+    <nav class="flex justify-between mb-8 border-b border-white/10 text-sm font-medium overflow-x-auto">
+        <button onclick="switchTab('A')" id="tabA" class="pb-3 px-4 tab-active">Treino A</button>
+        <button onclick="switchTab('B')" id="tabB" class="pb-3 px-4 opacity-50">Treino B</button>
+        <button onclick="switchTab('C')" id="tabC" class="pb-3 px-4 opacity-50">Treino C</button>
+        <button onclick="switchTab('D')" id="tabD" class="pb-3 px-4 opacity-50">Treino D</button>
+        <button onclick="switchTab('E')" id="tabE" class="pb-3 px-4 opacity-50">Treino E</button>
+    </nav>
+
+    <main id="exercicios-list">
+        </main>
+
+    <button onclick="addExercicio()" class="w-full py-4 mt-4 border-2 border-dashed border-white/20 rounded-2xl flex items-center justify-center gap-2 opacity-60 hover:opacity-100 transition-all">
+        <span class="text-xl">+</span> Adicionar Exercício à Ficha
+    </button>
+
+    <button onclick="finalizarTreino()" class="fixed bottom-24 left-4 right-4 bg-saffron text-[#172B36] font-bold py-4 rounded-xl shadow-lg z-50">
+        FINALIZAR TREINO
+    </button>
+
+    <div class="fixed bottom-0 left-0 right-0 h-20 glass-card mx-4 mb-4 flex justify-around items-center px-4 z-40">
+        <button class="flex flex-col items-center gap-1 accent-saffron">
+            <span>💪</span><span class="text-[10px]">Treino</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 opacity-50">
+            <span>📊</span><span class="text-[10px]">Evolução</span>
+        </button>
+    </nav>
+
     <script>
-        function switchTab(tab) {
-            // Lógica simples para mudar opacidade das abas (pode expandir para mudar conteúdo)
-            const tabs = ['treinoA', 'treinoB', 'treinoC'];
-            tabs.forEach(t => {
-                const btn = document.getElementById('btn-' + t);
-                btn.classList.remove('tab-active');
-                btn.classList.add('opacity-50');
-            });
-            const activeBtn = document.getElementById('btn-' + tab);
-            activeBtn.classList.add('tab-active');
-            activeBtn.classList.remove('opacity-50');
+        let currentTab = 'A';
+        let dadosTreino = JSON.parse(localStorage.getItem('dadosTreino')) || { A: [], B: [], C: [], D: [], E: [] };
+
+        function setGenero(g) {
+            const msg = g === 'F' ? "Muito bem-vinda!" : "Bem-vindo!";
+            document.getElementById('saudacao').innerText = msg;
         }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            const tabs = ['A', 'B', 'C', 'D', 'E'];
+            tabs.forEach(t => {
+                document.getElementById('tab' + t).classList.remove('tab-active');
+                document.getElementById('tab' + t).classList.add('opacity-50');
+            });
+            document.getElementById('tab' + tab).classList.add('tab-active');
+            renderExercicios();
+        }
+
+        function renderExercicios() {
+            const container = document.getElementById('exercicios-list');
+            container.innerHTML = '';
+            
+            dadosTreino[currentTab].forEach((ex, index) => {
+                const card = document.createElement('div');
+                card.className = 'glass-card p-6 mb-4 shadow-xl relative animate-fadeIn';
+                card.innerHTML = `
+                    <button onclick="removerExercicio(${index})" class="absolute top-4 right-4 text-red-400 text-xs">Remover</button>
+                    <div class="mb-4">
+                        <h2 class="text-lg font-semibold accent-saffron">${ex.nome}</h2>
+                        <p class="text-xs opacity-60">${ex.series} séries | ${ex.reps} reps</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="number" onchange="updateCarga(${index}, this.value)" value="${ex.carga || ''}" placeholder="Carga (kg)" class="bg-white/5 border border-white/10 rounded-lg p-2 text-sm">
+                        <div class="flex items-center justify-end">
+                            <label class="mr-2 text-xs">Concluído</label>
+                            <input type="checkbox" class="w-5 h-5 accent-saffron">
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function addExercicio() {
+            const nome = prompt("Nome do Exercício:");
+            if (!nome) return;
+            const series = prompt("Número de Séries:", "4");
+            const reps = prompt("Repetições:", "12");
+
+            dadosTreino[currentTab].push({ nome, series, reps, carga: "" });
+            salvar();
+            renderExercicios();
+        }
+
+        function removerExercicio(index) {
+            if (confirm("Deseja remover este exercício?")) {
+                dadosTreino[currentTab].splice(index, 1);
+                salvar();
+                renderExercicios();
+            }
+        }
+
+        function updateCarga(index, valor) {
+            dadosTreino[currentTab][index].carga = valor;
+            salvar();
+        }
+
+        function salvar() {
+            localStorage.setItem('dadosTreino', JSON.stringify(dadosTreino));
+        }
+
+        function finalizarTreino() {
+            alert("Treino Concluído com Sucesso! Você está 1% melhor! 💪");
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            ['A','B','C','D','E'].forEach(t => {
+                document.getElementById('tab'+t).className = (t === tab) ? 'pb-3 px-4 tab-active' : 'pb-3 px-4 opacity-50';
+            });
+            renderExercicios();
+        }
+
+        // Inicialização
+        renderExercicios();
     </script>
 </body>
 </html>
