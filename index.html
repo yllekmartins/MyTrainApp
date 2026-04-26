@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino App - MP025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #114C5A 0%, #172B36 100%);
+            color: #F1F6F4;
+            font-family: 'Inter', sans-serif;
+            min-height: 100-vh;
+        }
+        .glass-card {
+            background: rgba(23, 43, 54, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(241, 246, 244, 0.1);
+            border-radius: 16px; /* Regra dos 8px */
+        }
+        .accent-saffron { color: #FF9932; }
+        .bg-saffron { background-color: #FF9932; }
+        .tab-active { border-bottom: 3px solid #FFC801; color: #FFC801; }
+    </style>
+</head>
+<body class="p-4 pb-24">
+
+    <header class="mb-8 mt-4 flex justify-between items-center px-2">
+        <div>
+            <h1 class="text-2xl font-bold tracking-tight">Olá, Aluno</h1>
+            <p class="text-sm opacity-70">Sexta, 24 de Abril</p>
+        </div>
+        <div class="w-12 h-12 rounded-full border-2 border-[#FFC801] flex items-center justify-center font-bold">
+            MP
+        </div>
+    </header>
+
+    <nav class="flex justify-around mb-8 border-b border-white/10 text-sm font-medium">
+        <button onclick="switchTab('treinoA')" id="btn-treinoA" class="pb-3 px-4 tab-active">Treino A</button>
+        <button onclick="switchTab('treinoB')" id="btn-treinoB" class="pb-3 px-4 opacity-50">Treino B</button>
+        <button onclick="switchTab('treinoC')" id="btn-treinoC" class="pb-3 px-4 opacity-50">Treino C</button>
+    </nav>
+
+    <main id="treino-container">
+        <div class="glass-card p-6 mb-4 shadow-xl">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <h2 class="text-lg font-semibold accent-saffron">Supino Reto</h2>
+                    <p class="text-xs opacity-60">4 Séries x 10-12 Reps</p>
+                </div>
+                <input type="checkbox" class="w-6 h-6 rounded accent-saffron bg-transparent border-white/20">
+            </div>
+
+            <details class="group">
+                <summary class="list-none cursor-pointer flex items-center text-sm opacity-80 group-open:mb-4">
+                    <span class="mr-2">▼</span> Ver detalhes e carga
+                </summary>
+                <div class="space-y-4 mt-2 border-t border-white/10 pt-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] uppercase mb-1 opacity-50">Carga (kg)</label>
+                            <input type="number" placeholder="00" class="w-full bg-white/5 border border-white/10 rounded-lg p-2 focus:outline-none focus:border-[#FF9932]">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase mb-1 opacity-50">Descanso</label>
+                            <p class="p-2 text-sm">60 seg</p>
+                        </div>
+                    </div>
+                    <p class="text-xs italic opacity-70">Nota: Manter escápulas retraídas e barra descendo até o esterno.</p>
+                </div>
+            </details>
+        </div>
+
+        </main>
+
+    <div class="fixed bottom-0 left-0 right-0 h-20 glass-card mx-4 mb-4 flex justify-around items-center px-4">
+        <button class="flex flex-col items-center gap-1">
+            <span class="text-xl">🏠</span>
+            <span class="text-[10px]">Início</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 accent-saffron font-bold">
+            <span class="text-xl">💪</span>
+            <span class="text-[10px]">Treino</span>
+        </button>
+        <button class="flex flex-col items-center gap-1">
+            <span class="text-xl">📊</span>
+            <span class="text-[10px]">Evolução</span>
+        </button>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            // Lógica simples para mudar opacidade das abas (pode expandir para mudar conteúdo)
+            const tabs = ['treinoA', 'treinoB', 'treinoC'];
+            tabs.forEach(t => {
+                const btn = document.getElementById('btn-' + t);
+                btn.classList.remove('tab-active');
+                btn.classList.add('opacity-50');
+            });
+            const activeBtn = document.getElementById('btn-' + tab);
+            activeBtn.classList.add('tab-active');
+            activeBtn.classList.remove('opacity-50');
+        }
+    </script>
+</body>
+</html>
